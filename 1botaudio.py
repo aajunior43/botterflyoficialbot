@@ -22,7 +22,7 @@ def audio(update: Update, context: CallbackContext) -> None:
     # Carregar áudio com pydub
     audio = AudioSegment.from_file(audio_file)
     # Aumentar a velocidade
-    fast_audio = audio.speedup(playback_speed=1.4)
+    fast_audio = audio.speedup(playback_speed=1.5)
     # Salvar o áudio acelerado
     fast_audio.export("fast_" + audio_file, format='mp3')
     
