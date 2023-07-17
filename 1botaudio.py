@@ -1,6 +1,7 @@
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from gtts import gTTS
+from pydub import AudioSegment
 import os
 
 TOKEN = "6081911245:AAFXOtmqUIT18EVXiGPcfoth7C3VKDl_0ic"
@@ -17,9 +18,18 @@ def audio(update: Update, context: CallbackContext) -> None:
     tts = gTTS(text=text, lang='pt')
     audio_file = 'text_to_audio.mp3'
     tts.save(audio_file)
-    with open(audio_file, 'rb') as f:
+    
+    # Carregar áudio com pydub
+    audio = AudioSegment.from_file(audio_file)
+    # Aumentar a velocidade
+    fast_audio = audio.speedup(playback_speed=1.5)
+    # Salvar o áudio acelerado
+    fast_audio.export("fast_" + audio_file, format='mp3')
+    
+    with open("fast_" + audio_file, 'rb') as f:
         context.bot.send_audio(chat_id=update.effective_chat.id, audio=f)
     os.remove(audio_file)
+    os.remove("fast_" + audio_file)
     
     try:
         context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
@@ -40,4 +50,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-    
+            
