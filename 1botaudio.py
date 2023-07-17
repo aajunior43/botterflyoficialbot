@@ -1,9 +1,9 @@
 from telegram import Update, ForceReply
-from telegram.ext import Updater, CommandHandler, CallbackContext, ContextTypes
+from telegram.ext import Updater, CommandHandler, CallbackContext
 from gtts import gTTS
 import os
 
-TOKEN = "seu_token_aqui"
+TOKEN = "6081911245:AAFXOtmqUIT18EVXiGPcfoth7C3VKDl_0ic"
 
 def start(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
