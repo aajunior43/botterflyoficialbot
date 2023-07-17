@@ -9,7 +9,11 @@ TOKEN = "6081911245:AAFXOtmqUIT18EVXiGPcfoth7C3VKDl_0ic"
 def start(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
     update.message.reply_markdown_v2(
-        fr'Olá {user.mention_markdown_v2()}\!',
+        fr'Olá {user.mention_markdown_v2()}\! '
+        'Bem-vindo ao nosso bot de conversão de texto para áudio.\n'
+        'Você pode converter qualquer texto para um arquivo de áudio apenas digitando: \n'
+        '/audio <seu texto aqui>.\n'
+        'Por exemplo: /audio Olá, como você está?',
         reply_markup=ForceReply(selective=True),
     )
 
@@ -50,4 +54,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-            
+                                   
