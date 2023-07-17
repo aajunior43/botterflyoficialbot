@@ -9,7 +9,7 @@ TOKEN = "6081911245:AAFXOtmqUIT18EVXiGPcfoth7C3VKDl_0ic"
 def start(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
     update.message.reply_markdown_v2(
-        fr'Olá {user.mention_markdown_v2()}\! '
+        fr'Olá {user.mention_markdown_v2()}! '
         'Bem-vindo ao nosso bot de conversão de texto para áudio.\n'
         'Você pode converter qualquer texto para um arquivo de áudio apenas digitando: \n'
         '/audio <seu texto aqui>.\n'
@@ -25,8 +25,10 @@ def audio(update: Update, context: CallbackContext) -> None:
     
     # Carregar áudio com pydub
     audio = AudioSegment.from_file(audio_file)
-    # Aumentar a velocidade
-    fast_audio = audio.speedup(playback_speed=1.0)
+    
+    # Aumentar a velocidade alterando a taxa de quadros
+    fast_audio = audio.set_frame_rate(int(audio.frame_rate * 1.5))  # Aumenta a velocidade em 50%
+    
     # Salvar o áudio acelerado
     fast_audio.export("fast_" + audio_file, format='mp3')
     
@@ -54,4 +56,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-                                   
+    
