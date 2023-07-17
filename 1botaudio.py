@@ -12,7 +12,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Token do Bot do Telegram
-TOKEN = "seu_token_aqui"
+TOKEN = "6081911245:AAFXOtmqUIT18EVXiGPcfoth7C3VKDl_0ic"
 
 def start(update: Update, _: CallbackContext) -> None:
     """Envia uma mensagem quando o comando /start é emitido."""
